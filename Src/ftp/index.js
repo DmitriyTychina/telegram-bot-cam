@@ -6,7 +6,7 @@ const ftpServer = new FtpSrv({ url: `ftp://${ftp.ip}:${ftp.port}` })
 
 ftpServer.on('login', ({ connection, username, password }, resolve, reject) => {
   if (username === ftp.username && password === ftp.password) {
-      connection.on('STOR', controller.stop)
+      connection.on('STOP', controller.stop)
     return resolve(ftp.options)
   }
   return reject(new errors.GeneralError('Invalid username or password', 401))
